@@ -91,6 +91,14 @@ const products = [
     }
 ];
 
+const categories = [
+    {
+        id: 43543,
+        name: "Fruits"
+    }
+]
+
 export const db = {
-    products
+    products,
+    categories
 }
