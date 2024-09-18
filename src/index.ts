@@ -23,7 +23,6 @@ const typeDefs = `#graphql
 `;
 
 
-
 const resolvers = {
     Query: {
         products: () => db.products
