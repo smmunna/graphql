@@ -8,7 +8,7 @@ import { db } from './db.js';
 const typeDefs = `#graphql
 
  type Product {
-    id: ID!
+    id: ID
     name: String
     image: String
     price: Float
@@ -19,7 +19,7 @@ const typeDefs = `#graphql
  
   type Query {
     products: [Product]
-    product(pid: ID!): Product
+    product(pid: ID, name:String): Product
   }
 `;
 
@@ -27,8 +27,8 @@ const typeDefs = `#graphql
 const resolvers = {
     Query: {
         products: () => db.products,
-        product: (parent:any, args:{pid:Number}, context:any) => {
-            const result = db.products.find(p => p.id == args.pid)
+        product: (parent:any, args:{pid:Number, name:String}, context:any) => {
+            const result = db.products.find(p => p.name == args.name)
             return (result)
         }
     },
