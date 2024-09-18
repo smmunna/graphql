@@ -19,13 +19,18 @@ const typeDefs = `#graphql
  
   type Query {
     products: [Product]
+    product(pid: ID!): Product
   }
 `;
 
 
 const resolvers = {
     Query: {
-        products: () => db.products
+        products: () => db.products,
+        product: (parent:any, args:{pid:Number}, context:any) => {
+            const result = db.products.find(p => p.id == args.pid)
+            return (result)
+        }
     },
 };
 

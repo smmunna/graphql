@@ -18,11 +18,16 @@ const typeDefs = `#graphql
  
   type Query {
     products: [Product]
+    product(pid: ID!): Product
   }
 `;
 const resolvers = {
     Query: {
-        products: () => db.products
+        products: () => db.products,
+        product: (parent, args, context) => {
+            const result = db.products.find(p => p.id == args.pid);
+            return (result);
+        }
     },
 };
 // The ApolloServer constructor requires two parameters: your schema
